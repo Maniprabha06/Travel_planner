@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #333;
+    background-color: #ff3333; /* Red background color */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,6 +29,40 @@
   }
   
   .nav-links a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
   
+
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .button-primary {
+    background-color: #3498db; /* Light Blue */
+    color: white;
+    border: none;
+  }
+  
+  .button-primary:hover {
+    background-color: #2980b9; /* Darker Light Blue */
+  }
+  
+  .button-secondary {
+    background-color: white;
+    color: #3498db; /* Light Blue */
+    border: 2px solid #3498db; /* Light Blue */
+  }
+  
+  .button-secondary:hover {
+    background-color: #ecf0f1; /* Light Gray */
+  }

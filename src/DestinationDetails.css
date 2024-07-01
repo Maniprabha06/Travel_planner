@@ -1,0 +1,31 @@
+.destination-details {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .destination-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .book-button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .book-button:hover {
+    background-color: #0056b3;
+  }
+  

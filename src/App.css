@@ -8,15 +8,6 @@ body {
   text-align: center;
 }
 
-.navbar {
-  background-color: #333;
-  padding: 1rem;
-}
-
-.navbar h1 {
-  color: white;
-  margin: 0;
-}
 
 .card-container {
   display: flex;
