@@ -1,8 +1,38 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const serviceID = 'service_sh2suam';
+    const templateID = 'template_nv974r9';
+    const publicKey = '1u3zmRCc5LIVK6KXE';
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: 'Maniprabha',
+      message: message,
+    };
+
+    emailjs.send(serviceID, templateID, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email sent SUCCESSFULLY!', response);
+        setName('');
+        setEmail('');
+        setMessage('');
+      })
+      .catch((error) => {
+        console.log('EMAIL SENDING FAILED...', error);
+      });
+  };
+
   return (
     <div className="contact-container">
       <div className="contact-content">
@@ -11,7 +41,7 @@ const Contact = () => {
           Have questions, suggestions, or need assistance? Feel free to reach out to us. We are
           here to help you plan your next adventure.
         </p>
-        
+
         <div className="contact-info">
           <ul>
             <li>
@@ -26,15 +56,39 @@ const Contact = () => {
           </ul>
         </div>
 
-        <form className="contact-form">
+        <form onSubmit={handleSubmit} className="contact-form">
           <label htmlFor="name">Your Name:</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" required />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter your name"
+            required
+          />
 
           <label htmlFor="email">Your Email:</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+          />
 
           <label htmlFor="message">Message:</label>
-          <textarea id="message" name="message" placeholder="Write your message here" rows="4" required></textarea>
+          <textarea
+            id="message"
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Write your message here"
+            rows="4"
+            required
+          ></textarea>
 
           <button type="submit">Send Message</button>
         </form>
