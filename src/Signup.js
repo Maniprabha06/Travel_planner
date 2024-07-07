@@ -1,5 +1,8 @@
+// Signup.jsx
+
 import React, { useState } from 'react';
 import { Card, CardContent, TextField, Button, Typography } from '@mui/material';
+import axios from 'axios'; // Import axios for making HTTP requests
 import './Signup.css'; // Import custom CSS for styling
 
 const Signup = () => {
@@ -9,13 +12,34 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    alert('Signup successful');
+
+    try {
+      // Make POST request to backend API
+      const response = await axios.post('http://localhost:5000/api/signup', {
+        name,
+        email,
+        dateOfBirth,
+        password
+      });
+
+      console.log(response.data); // Log response from server
+      alert('Signup successful');
+      // Clear form fields after successful signup
+      setName('');
+      setEmail('');
+      setDateOfBirth('');
+      setPassword('');
+      setConfirmPassword('');
+    } catch (error) {
+      console.error('Error signing up:', error);
+      alert('Signup failed. Please try again.'); // Handle error gracefully
+    }
   };
 
   return (

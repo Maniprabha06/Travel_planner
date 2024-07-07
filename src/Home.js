@@ -1,6 +1,8 @@
 import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Home.css';
-
+import { Link } from 'react-router-dom';
 
 function Home() {
   const places = [
@@ -20,12 +22,12 @@ function Home() {
       description: 'The city that never sleeps.',
     },
     {
-      image: 'https://th.bing.com/th/id/R.5a5ce30d4b6aa502c15bc0252986e945?rik=no4uim%2bnAfYnow&riu=http%3a%2f%2fwww.go2holiday.com%2fwp-content%2fuploads%2f2012%2f05%2fBeautiful-Sydney-In-Night.jpg&ehk=uG0XLro8VrbLlSKLekNGxW%2fEXxMgu1K4M9evzocWkc8%3d&risl=&pid=ImgRaw&r=0',
+      image: 'https://images.pexels.com/photos/2607832/pexels-photo-2607832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       title: 'Sydney, Australia',
       description: 'The largest city in Australia.',
     },
     {
-      image: 'https://globalgrasshopper.com/wp-content/uploads/2021/01/Copacabana-beach.jpg',
+      image: 'https://images.pexels.com/photos/10393585/pexels-photo-10393585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       title: 'Rio de Janeiro, Brazil',
       description: 'Famous for its Copacabana and Ipanema beaches.',
     },
@@ -35,12 +37,12 @@ function Home() {
       description: 'Known for its harbor and Table Mountain.',
     },
     {
-      image: 'https://th.bing.com/th/id/OIP.zgX5aCOPpPAcjk2z91sZxgHaFV?rs=1&pid=ImgDetMain',
+      image: 'https://images.pexels.com/photos/2064827/pexels-photo-2064827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       title: 'Rome, Italy',
       description: 'The capital city of Italy.',
     },
     {
-      image: 'https://th.bing.com/th/id/OIP.Kmb95kZWZbSpy3loqfZ7kwHaE8?rs=1&pid=ImgDetMain',
+      image: 'https://images.pexels.com/photos/1467300/pexels-photo-1467300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       title: 'Dubai, UAE',
       description: 'Known for luxury shopping and ultramodern architecture.',
     },
@@ -55,7 +57,7 @@ function Home() {
       description: 'The capital and largest city of England and the United Kingdom.',
     },
     {
-      image: 'https://www.travelplaces24x7.com/wp-content/uploads/2019/01/singapore-hop-on-hop-off-night-tour-in-singapore-145327.jpg',
+      image: 'https://images.pexels.com/photos/290597/pexels-photo-290597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       title: 'Singapore',
       description: 'A global financial hub and island city-state.',
     },
@@ -66,8 +68,52 @@ function Home() {
     },
   ];
 
+  const carouselImages = [
+    {
+      image: 'https://images.pexels.com/photos/1673978/pexels-photo-1673978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      image: 'https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      image: 'https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      
+    },
+    {
+      image: 'https://images.pexels.com/photos/1796715/pexels-photo-1796715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      image: 'https://images.pexels.com/photos/472309/pexels-photo-472309.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      image: 'https://images.pexels.com/photos/460376/pexels-photo-460376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      
+    },
+    {
+      image: 'https://images.pexels.com/photos/165553/pexels-photo-165553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    },
+    {
+      image: 'https://images.pexels.com/photos/267104/pexels-photo-267104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      
+    },
+  ];
+
   return (
     <div className="App">
+      <Carousel 
+        showThumbs={false} 
+        autoPlay 
+        infiniteLoop 
+        centerMode 
+        centerSlidePercentage={80} 
+        dynamicHeight
+      >
+        {carouselImages.map((place, index) => (
+          <div key={index} className="carousel-card">
+            <img src={place.image} alt={place.title} className="carousel-image" />
+          </div>
+        ))}
+      </Carousel>
       <div className="card-container">
         {places.map((place, index) => (
           <Card key={index} place={place} />
@@ -77,14 +123,15 @@ function Home() {
   );
 }
 
-
 const Card = ({ place }) => (
   <div className="card">
     <img src={place.image} alt={place.title} className="card-image" />
     <div className="card-details">
       <h2>{place.title}</h2>
       <p>{place.description}</p>
+      <Link to="/booking">
       <button className="book-button">Book Now</button>
+      </Link>
     </div>
   </div>
 );

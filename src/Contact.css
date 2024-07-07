@@ -45,7 +45,7 @@
   
   .contact-info ul li strong {
     font-weight: bold;
-    color: #333;
+    color: #008080;
   }
   
   .contact-info ul li a {
@@ -61,7 +61,7 @@
   .contact-form label {
     font-weight: bold;
     margin-bottom: 8px;
-    color: #333;
+    color:#008080;
   }
   
   .contact-form input[type="text"],

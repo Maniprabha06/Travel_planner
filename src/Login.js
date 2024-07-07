@@ -8,11 +8,32 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Backend code would go here
-    navigate('/');
-    alert('Login successful');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store token in local storage or context
+        localStorage.setItem('token', data.token);
+        alert('Login successful');
+        navigate('/');
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   return (
@@ -30,6 +51,7 @@ const Login = () => {
               fullWidth
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <TextField
               label="Password"
@@ -39,6 +61,7 @@ const Login = () => {
               fullWidth
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <Button
               type="submit"
